@@ -61,7 +61,7 @@ public class TestArrayList {
 
     public static void shouldNotContainNumber() {
         // given
-        List<Integer> test = new ArrayList<>();
+        List test = new ArrayList();
 
         // when
         test.add(1);
@@ -72,7 +72,7 @@ public class TestArrayList {
 
     public static void shouldContainNumber() {
         // given
-        List<Integer> test = new ArrayList<>();
+        List test = new ArrayList();
 
         // when
         test.add(1);
@@ -80,6 +80,31 @@ public class TestArrayList {
 
         // then
         assert test.contains(2) : "array doesn't contain number 2";
+    }
+
+    public static void shouldProduceEmptyArray() {
+        // given
+        List test = new ArrayList();
+
+        // when
+        Object[] array = test.toArray();
+
+        // then
+        assert array.length == 0 : "array not empty";
+    }
+
+    public static void shouldProduceArrayWith3Integers() {
+        // given
+        List test = new ArrayList();
+
+        // when
+        test.add(1);
+        test.add(2);
+        test.add(3);
+        Object[] array = test.toArray();
+
+        // then
+        assert array.length == 3 : "array doesn't contain 3 elements";
     }
 
     public static void main(String[] args) {
@@ -95,5 +120,9 @@ public class TestArrayList {
         // contains
         shouldNotContainNumber();
         shouldContainNumber();
+
+        // toArray
+        shouldProduceEmptyArray();
+        shouldProduceArrayWith3Integers();
     }
 }
