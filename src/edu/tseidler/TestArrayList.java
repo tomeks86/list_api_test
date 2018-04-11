@@ -107,6 +107,29 @@ public class TestArrayList {
         assert array.length == 3 : "array doesn't contain 3 elements";
     }
 
+    public static void shouldAddElementToList() {
+        // given
+        List test = new ArrayList();
+
+        // when
+
+
+        // then
+        assert test.add(new Object()) : "failed to add element";
+    }
+    
+    public static void shouldAddTheSameElementToList() {
+        // given
+        List test = new ArrayList();
+        Object testObj = new Object();
+    
+        // when
+        test.add(testObj);
+    
+        // then
+        assert test.add(testObj) : "failed to add the same element to list";
+    }
+
     public static void main(String[] args) {
         // size
         shouldGiveZeroSize();
@@ -124,5 +147,9 @@ public class TestArrayList {
         // toArray
         shouldProduceEmptyArray();
         shouldProduceArrayWith3Integers();
+        
+        // add
+        shouldAddElementToList();
+        shouldAddTheSameElementToList();
     }
 }
