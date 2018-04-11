@@ -130,6 +130,43 @@ public class TestArrayList {
         assert test.add(testObj) : "failed to add the same element to list";
     }
 
+    public static void shouldRemoveObjectFromList() {
+        // given
+        List test = new ArrayList();
+
+        // when
+        Object testObj = new Object();
+        test.add(testObj);
+
+        // then
+        assert test.remove(testObj) : "tested object cannot be removed from list";
+    }
+
+    public static void shouldRemoveElementByIndex() {
+        // given
+        List test = new ArrayList();
+
+        // when
+        Object testObj = new Object();
+        test.add(testObj);
+
+        // then
+        assert testObj.equals(test.remove(0)) : "element 0 removed from list differs from original";
+    }
+
+    public static void shouldNotRemoveObjectFromListWhenAbsent() {
+        // given
+        List test = new ArrayList();
+
+        // when
+        Object testObj = new Object();
+        Object testObj2 = new Object();
+        test.add(testObj);
+
+        // then
+        assert !test.remove(testObj2) : "second object really present in the list?";
+    }
+
     public static void main(String[] args) {
         // size
         shouldGiveZeroSize();
@@ -151,5 +188,10 @@ public class TestArrayList {
         // add
         shouldAddElementToList();
         shouldAddTheSameElementToList();
+
+        // remove
+        shouldRemoveObjectFromList();
+        shouldRemoveElementByIndex();
+        shouldNotRemoveObjectFromListWhenAbsent();
     }
 }
