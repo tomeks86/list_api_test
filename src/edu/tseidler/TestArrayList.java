@@ -59,6 +59,29 @@ public class TestArrayList {
         assert !test.isEmpty() : "array is empty!";
     }
 
+    public static void shouldNotContainNumber() {
+        // given
+        List<Integer> test = new ArrayList<>();
+
+        // when
+        test.add(1);
+
+        // then
+        assert !test.contains(2) : "array contains number 2";
+    }
+
+    public static void shouldContainNumber() {
+        // given
+        List<Integer> test = new ArrayList<>();
+
+        // when
+        test.add(1);
+        test.add(2);
+
+        // then
+        assert test.contains(2) : "array doesn't contain number 2";
+    }
+
     public static void main(String[] args) {
         // size
         shouldGiveZeroSize();
@@ -68,5 +91,9 @@ public class TestArrayList {
         // isEmpty
         shouldReturnTrueForEmpty();
         shouldReturnFalseForNonEmpty();
+
+        // contains
+        shouldNotContainNumber();
+        shouldContainNumber();
     }
 }
