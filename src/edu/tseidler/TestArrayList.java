@@ -1,6 +1,7 @@
 package edu.tseidler;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class TestArrayList {
@@ -166,6 +167,47 @@ public class TestArrayList {
         // then
         assert !test.remove(testObj2) : "second object really present in the list?";
     }
+    
+    public static void shouldContainAllCollection() {
+        // given
+        List test = new ArrayList();
+    
+        // when
+        test.add(1);
+        test.add(2);
+        test.add(3);
+        Integer[] elements = {1, 2, 3, 3};
+    
+        // then
+        assert test.containsAll(Arrays.asList(elements)) : "list doesn't contain specified collection";
+    }
+
+    public static void shouldContainSubcollection() {
+        // given
+        List test = new ArrayList();
+
+        // when
+        test.add(1);
+        test.add(2);
+        test.add(3);
+        Integer[] elements = {1, 2};
+
+        // then
+        assert test.containsAll(Arrays.asList(elements)) : "list doesn't contain sublist";
+    }
+
+    public static void shouldNotContainCollection() {
+        // given
+        List test = new ArrayList();
+
+        // when
+        test.add(1);
+        test.add(2);
+        Integer[] elements = {1, 2, 3};
+
+        // then
+        assert !test.containsAll(Arrays.asList(elements)) : "list strangely contains a larger collection";
+    }
 
     public static void main(String[] args) {
         // size
@@ -193,5 +235,10 @@ public class TestArrayList {
         shouldRemoveObjectFromList();
         shouldRemoveElementByIndex();
         shouldNotRemoveObjectFromListWhenAbsent();
+        
+        // containsAll
+        shouldContainAllCollection();
+        shouldContainSubcollection();
+        shouldNotContainCollection();
     }
 }
