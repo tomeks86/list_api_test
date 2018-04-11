@@ -38,10 +38,35 @@ public class TestArrayList {
         assert test.size() == 0 : "size should be again 0!";
     }
 
+    public static void shouldReturnTrueForEmpty() {
+        // given
+        List test = new ArrayList();
+
+        // when
+
+        // then
+        assert test.isEmpty() : "array not empty!";
+    }
+
+    public static void shouldReturnFalseForNonEmpty() {
+        // given
+        List test = new ArrayList();
+
+        // when
+        test.add(new Object());
+
+        // then
+        assert !test.isEmpty() : "array is empty!";
+    }
+
     public static void main(String[] args) {
         // size
         shouldGiveZeroSize();
         shouldGiveSizeOfOne();
         shouldGiveZeroSizeAfterAdditionAndRemoval();
+
+        // isEmpty
+        shouldReturnTrueForEmpty();
+        shouldReturnFalseForNonEmpty();
     }
 }
