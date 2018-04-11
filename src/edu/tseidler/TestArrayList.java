@@ -209,6 +209,57 @@ public class TestArrayList {
         assert !test.containsAll(Arrays.asList(elements)) : "list strangely contains a larger collection";
     }
 
+    public static void shouldAddAllElements() {
+        // given
+        List test = new ArrayList();
+
+        // when
+        Integer[] elements = {1, 2, 3};
+
+        // then
+        assert test.addAll(Arrays.asList(elements)) : "failed the addAll for collection of elements";
+    }
+
+    public static void shouldContainElementsAfterAddAll() {
+        // given
+        List test = new ArrayList();
+
+        // when
+        Integer[] elements = {1, 2, 3};
+        test.addAll(Arrays.asList(elements));
+
+        // then
+        assert test.containsAll(Arrays.asList(elements)) : "list doesn't contain added collection";
+    }
+
+    public static void shouldContainElementsAfterAddAllToNonEmptyList() {
+        // given
+        List test = new ArrayList();
+        test.add(5);
+
+        // when
+        Integer[] elements = {1, 2, 3};
+        test.addAll(Arrays.asList(elements));
+
+        // then
+        assert test.containsAll(Arrays.asList(elements)) : "list doesn't contain added collection";
+    }
+    
+    public static void shouldAddElementsAtIndex() {
+        // given
+        List test = new ArrayList();
+        test.add(1);
+        test.add(2);
+        test.add(5);
+    
+        // when
+        Integer[] elements = {3, 4};
+        test.addAll(2, Arrays.asList(elements));
+    
+        // then
+        assert test.get(3).equals(4) : "insertion with addAll on position 2 failed";
+    }
+
     public static void main(String[] args) {
         // size
         shouldGiveZeroSize();
@@ -240,5 +291,11 @@ public class TestArrayList {
         shouldContainAllCollection();
         shouldContainSubcollection();
         shouldNotContainCollection();
+
+        // addAll
+        shouldAddAllElements();
+        shouldContainElementsAfterAddAll();
+        shouldContainElementsAfterAddAllToNonEmptyList();
+        shouldAddElementsAtIndex();
     }
 }
