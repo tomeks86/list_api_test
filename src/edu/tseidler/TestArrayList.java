@@ -167,6 +167,24 @@ public class TestArrayList {
         // then
         assert !test.remove(testObj2) : "second object really present in the list?";
     }
+
+    public static void shouldNotRemoveFromWrongIndexPosition() {
+        // given
+        List test = new ArrayList();
+        boolean thrown = false;
+
+        // when
+        test.add(new Object());
+        test.add(new Object());
+        try {
+            test.remove(2);
+        } catch (IndexOutOfBoundsException e) {
+            thrown = true;
+        }
+
+        // then
+        assert thrown : "object at index 2 strangely found";
+    }
     
     public static void shouldContainAllCollection() {
         // given
@@ -286,6 +304,7 @@ public class TestArrayList {
         shouldRemoveObjectFromList();
         shouldRemoveElementByIndex();
         shouldNotRemoveObjectFromListWhenAbsent();
+        shouldNotRemoveFromWrongIndexPosition();
         
         // containsAll
         shouldContainAllCollection();
