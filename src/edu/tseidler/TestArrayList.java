@@ -301,6 +301,30 @@ public class TestArrayList {
         // then
         assert test.size() == 2 : "removeAll didn't remove 3 elements";
     }
+    
+    public static void shouldContainThreeElementsAfterRetainAllWhenAllInList() {
+        // given
+        List test = new ArrayList();
+        test.addAll(Arrays.asList(new Integer[] {1, 2, 3, 4, 5}));
+    
+        // when
+        test.retainAll(Arrays.asList(new Integer[] {1, 3, 5}));
+    
+        // then
+        assert test.size() == 3 : "different than 3 number of elements retained in the list";
+    }
+
+    public static void shouldContainTwoElementsAfterRetainAllWhenNotAllInList() {
+        // given
+        List test = new ArrayList();
+        test.addAll(Arrays.asList(new Integer[] {1, 2, 3, 4, 5}));
+
+        // when
+        test.retainAll(Arrays.asList(new Integer[] {1, 3, 7}));
+
+        // then
+        assert test.size() == 2 : "different than 2 number of elements retained in the list";
+    }
 
     public static void main(String[] args) {
         // size
@@ -344,5 +368,9 @@ public class TestArrayList {
         // removeAll
         shouldRemoveAllSelectedElements();
         shouldContainTwoElementsAfterRemoveAll();
+        
+        // retainAll
+        shouldContainThreeElementsAfterRetainAllWhenAllInList();
+        shouldContainTwoElementsAfterRetainAllWhenNotAllInList();
     }
 }
