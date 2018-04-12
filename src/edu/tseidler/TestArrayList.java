@@ -338,6 +338,36 @@ public class TestArrayList {
         assert !test.containsAll(Arrays.asList(new Integer[] {1, 2, 3, 4})) : "replaceAll not applied to list implementation";
     }
 
+    public static void shouldSortArrayAscending() {
+        // given
+        List<Integer> test = new ArrayList<>();
+        test.addAll(Arrays.asList(new Integer[] {1, 4, 3, 2}));
+
+        // when
+        test.sort((i, j) -> i.compareTo(j));
+
+        // then
+        assert test.get(0) == 1 : "1 not on first position";
+        assert test.get(1) == 2 : "2 not on first position";
+        assert test.get(2) == 3 : "3 not on first position";
+        assert test.get(3) == 4 : "4 not on first position";
+    }
+
+    public static void shouldSortArrayDescending() {
+        // given
+        List<Integer> test = new ArrayList<>();
+        test.addAll(Arrays.asList(new Integer[] {1, 4, 3, 2}));
+
+        // when
+        test.sort((i, j) -> j.compareTo(i));
+
+        // then
+        assert test.get(0) == 4 : "4 not on first position";
+        assert test.get(1) == 3 : "3 not on first position";
+        assert test.get(2) == 2 : "2 not on first position";
+        assert test.get(3) == 1 : "1 not on first position";
+    }
+
     public static void main(String[] args) {
         // size
         shouldGiveZeroSize();
@@ -387,5 +417,9 @@ public class TestArrayList {
         
         // replaceAll
         shouldReplaceAllIntegersByFive();
+
+        // sort
+        shouldSortArrayAscending();
+        shouldSortArrayDescending();
     }
 }
