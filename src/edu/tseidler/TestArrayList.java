@@ -325,6 +325,18 @@ public class TestArrayList {
         // then
         assert test.size() == 2 : "different than 2 number of elements retained in the list";
     }
+    
+    public static void shouldReplaceAllIntegersByFive() {
+        // given
+        List test = new ArrayList();
+        test.addAll(Arrays.asList(new Integer[] {1, 2, 3, 4}));
+    
+        // when
+        test.replaceAll(i -> 5);
+    
+        // then
+        assert !test.containsAll(Arrays.asList(new Integer[] {1, 2, 3, 4})) : "replaceAll not applied to list implementation";
+    }
 
     public static void main(String[] args) {
         // size
@@ -372,5 +384,8 @@ public class TestArrayList {
         // retainAll
         shouldContainThreeElementsAfterRetainAllWhenAllInList();
         shouldContainTwoElementsAfterRetainAllWhenNotAllInList();
+        
+        // replaceAll
+        shouldReplaceAllIntegersByFive();
     }
 }
