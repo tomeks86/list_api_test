@@ -556,6 +556,30 @@ public class TestArrayList {
         assert ind == -1 : "indexOf strangely found element absent in the list";
     }
 
+    public static void shouldReturnIndexOfLastOccurenceOfANumber() {
+        // given
+        List test = new ArrayList();
+        test.addAll(Arrays.asList(new Integer[] {1, 2, 1, 2, 3, 4}));
+
+        // when
+        int ind = test.lastIndexOf(2);
+
+        // then
+        assert ind == 3 : "index of last occurence different than expected";
+    }
+
+    public static void shouldReturnMinusOneWithLastIndexOfWhenNotInAList() {
+        // given
+        List test = new ArrayList();
+        test.addAll(Arrays.asList(new Integer[] {1, 2, 1, 2, 3, 4}));
+
+        // when
+        int ind = test.lastIndexOf(5);
+
+        // then
+        assert ind == -1 : "index of last occurence different than -1 for element not in the list";
+    }
+
     public static void main(String[] args) {
         // size
         shouldGiveZeroSize();
@@ -631,6 +655,8 @@ public class TestArrayList {
         shouldFindObjectAtPositionZero();
         shouldReturnMinusOneWhenNotFoundInList();
 
-        
+        // lastIndexOf
+        shouldReturnIndexOfLastOccurenceOfANumber();
+        shouldReturnMinusOneWithLastIndexOfWhenNotInAList();
     }
 }
