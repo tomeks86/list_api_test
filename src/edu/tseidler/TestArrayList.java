@@ -278,6 +278,30 @@ public class TestArrayList {
         assert test.get(3).equals(4) : "insertion with addAll on position 2 failed";
     }
 
+    public static void shouldRemoveAllSelectedElements() {
+        // given
+        List test = new ArrayList();
+        test.addAll(Arrays.asList(new Integer[] {1, 2, 3, 4, 5}));
+
+        // when
+        test.removeAll(Arrays.asList(new Integer[] {1, 3, 5}));
+
+        // then
+        assert !test.containsAll(Arrays.asList(new Integer[] {1, 3, 5})) : "list contains deleted elements";
+    }
+
+    public static void shouldContainTwoElementsAfterRemoveAll() {
+        // given
+        List test = new ArrayList();
+        test.addAll(Arrays.asList(new Integer[] {1, 2, 3, 4, 5}));
+
+        // when
+        test.removeAll(Arrays.asList(new Integer[] {1, 3, 5}));
+
+        // then
+        assert test.size() == 2 : "removeAll didn't remove 3 elements";
+    }
+
     public static void main(String[] args) {
         // size
         shouldGiveZeroSize();
@@ -316,5 +340,9 @@ public class TestArrayList {
         shouldContainElementsAfterAddAll();
         shouldContainElementsAfterAddAllToNonEmptyList();
         shouldAddElementsAtIndex();
+
+        // removeAll
+        shouldRemoveAllSelectedElements();
+        shouldContainTwoElementsAfterRemoveAll();
     }
 }
