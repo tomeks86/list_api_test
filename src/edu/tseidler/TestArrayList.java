@@ -439,6 +439,54 @@ public class TestArrayList {
         assert thrown : "IndexOutOfBoundsException not thrown after get from empty list";
     }
 
+    public static void shouldChangeValueOfElementWithSet() {
+        // given
+        List test = new ArrayList();
+        test.addAll(Arrays.asList(new Integer[] {1, 1, 1, 1}));
+
+        // when
+        test.set(2, 5);
+
+        // then
+        assert test.get(0).equals(1) : "1st element is not 1";
+        assert test.get(1).equals(1) : "2nd element is not 1";
+        assert test.get(2).equals(5) : "3rd element is not 5";
+        assert test.get(3).equals(1) : "4th element is not 1";
+    }
+
+    public static void shouldThrowIOBExceptionWhenSetOnEMptyList() {
+        // given
+        List test = new ArrayList();
+        boolean thrown = false;
+
+        // when
+        try {
+            test.set(0, 5);
+        } catch (IndexOutOfBoundsException e) {
+            thrown = true;
+        }
+
+        // then
+        assert thrown : "IndexOutOfBoundsException not thrown when set used on an empty list";
+    }
+
+    public static void shouldThrowIOBExceptionWhenSetWithNegativeIndex() {
+        // given
+        List test = new ArrayList();
+        test.add(new Object());
+        boolean thrown = false;
+
+        // when
+        try {
+            test.set(-1, 5);
+        } catch (IndexOutOfBoundsException e) {
+            thrown = true;
+        }
+
+        // then
+        assert thrown : "IndexOutOfBoundsException not thrown when set used with negative index";
+    }
+
     public static void main(String[] args) {
         // size
         shouldGiveZeroSize();
@@ -501,5 +549,10 @@ public class TestArrayList {
         shouldGiveElementFromPosition();
         shouldThrowIOBExceptionWhenListEmpty();
         shouldThrowIOBExceptionWhenIndexNegative();
+
+        // set
+        shouldChangeValueOfElementWithSet();
+        shouldThrowIOBExceptionWhenSetOnEMptyList();
+        shouldThrowIOBExceptionWhenSetWithNegativeIndex();
     }
 }
