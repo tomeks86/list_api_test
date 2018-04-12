@@ -368,6 +368,29 @@ public class TestArrayList {
         assert test.get(3) == 1 : "1 not on first position";
     }
 
+    public static void shouldYieldZeroSizeAfterClear() {
+        // given
+        List test = new ArrayList();
+        test.addAll(Arrays.asList(new Integer[] {1, 2, 3, 4}));
+
+        // when
+        test.clear();
+
+        // then
+        assert test.size() == 0 : "list size after clear different than zero";
+    }
+
+    public static void shouldYieldZeroSizeAfterClearOfEmptyList() {
+        // given
+        List test = new ArrayList();
+
+        // when
+        test.clear();
+
+        // then
+        assert test.size() == 0 : "list size after clear different than zero";
+    }
+
     public static void main(String[] args) {
         // size
         shouldGiveZeroSize();
@@ -421,5 +444,9 @@ public class TestArrayList {
         // sort
         shouldSortArrayAscending();
         shouldSortArrayDescending();
+
+        // clear
+        shouldYieldZeroSizeAfterClear();
+        shouldYieldZeroSizeAfterClearOfEmptyList();
     }
 }
