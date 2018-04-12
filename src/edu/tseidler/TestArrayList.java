@@ -487,6 +487,51 @@ public class TestArrayList {
         assert thrown : "IndexOutOfBoundsException not thrown when set used with negative index";
     }
 
+    public static void shouldAddElementToEmptyListAtPositionZero() {
+        // given
+        List test = new ArrayList();
+
+        // when
+        test.add(0, 5);
+
+        // then
+        assert test.size() == 1 : "list size not equal to 1";
+        assert test.get(0).equals(5) : "first element different than 5";
+    }
+
+    public static void shouldThrowIOBExceptionWhenAddElementToEmptyListAtPositionOne() {
+        // given
+        List test = new ArrayList();
+        boolean thrown = false;
+
+        // when
+        try {
+            test.add(1, 5);
+        } catch (IndexOutOfBoundsException e) {
+            thrown = true;
+        }
+
+        // then
+        assert thrown : "IndexOutOfBoundsException not thrown on add at illegal position of empty list";
+    }
+
+    public static void shouldAddElementAtSpecifiedPosition() {
+        // given
+        List test = new ArrayList();
+        test.addAll(Arrays.asList(new Integer[] {1, 2, 3, 4}));
+
+        // when
+        test.add(1, 5);
+
+        // then
+        assert test.size() == 5 : "list size not equal to 5 (add failed)";
+        assert test.get(0).equals(1) : "1st element different than 1";
+        assert test.get(1).equals(5) : "2nd element different than 5";
+        assert test.get(2).equals(2) : "3rd element different than 2";
+        assert test.get(3).equals(3) : "4th element different than 3";
+        assert test.get(4).equals(4) : "5th element different than 4";
+    }
+
     public static void main(String[] args) {
         // size
         shouldGiveZeroSize();
@@ -554,5 +599,10 @@ public class TestArrayList {
         shouldChangeValueOfElementWithSet();
         shouldThrowIOBExceptionWhenSetOnEMptyList();
         shouldThrowIOBExceptionWhenSetWithNegativeIndex();
+
+        // add
+        shouldAddElementToEmptyListAtPositionZero();
+        shouldThrowIOBExceptionWhenAddElementToEmptyListAtPositionOne();
+        shouldAddElementAtSpecifiedPosition();
     }
 }
