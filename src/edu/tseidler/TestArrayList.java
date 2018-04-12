@@ -532,6 +532,30 @@ public class TestArrayList {
         assert test.get(4).equals(4) : "5th element different than 4";
     }
 
+    public static void shouldFindObjectAtPositionZero() {
+        // given
+        List test = new ArrayList();
+        test.addAll(Arrays.asList(new Integer[] {1, 2, 3, 4}));
+
+        // when
+        int ind = test.indexOf(3);
+
+        // then
+        assert ind == 2 : "indexOf result differ from expected for element";
+    }
+
+    public static void shouldReturnMinusOneWhenNotFoundInList() {
+        // given
+        List test = new ArrayList();
+        test.addAll(Arrays.asList(new Integer[] {1, 2, 3, 4}));
+
+        // when
+        int ind = test.indexOf(5);
+
+        // then
+        assert ind == -1 : "indexOf strangely found element absent in the list";
+    }
+
     public static void main(String[] args) {
         // size
         shouldGiveZeroSize();
@@ -553,6 +577,9 @@ public class TestArrayList {
         // add
         shouldAddElementToList();
         shouldAddTheSameElementToList();
+        shouldAddElementToEmptyListAtPositionZero();
+        shouldThrowIOBExceptionWhenAddElementToEmptyListAtPositionOne();
+        shouldAddElementAtSpecifiedPosition();
 
         // remove
         shouldRemoveObjectFromList();
@@ -600,9 +627,10 @@ public class TestArrayList {
         shouldThrowIOBExceptionWhenSetOnEMptyList();
         shouldThrowIOBExceptionWhenSetWithNegativeIndex();
 
-        // add
-        shouldAddElementToEmptyListAtPositionZero();
-        shouldThrowIOBExceptionWhenAddElementToEmptyListAtPositionOne();
-        shouldAddElementAtSpecifiedPosition();
+        // indexOf
+        shouldFindObjectAtPositionZero();
+        shouldReturnMinusOneWhenNotFoundInList();
+
+        
     }
 }
