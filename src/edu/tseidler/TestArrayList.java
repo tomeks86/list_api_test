@@ -390,6 +390,54 @@ public class TestArrayList {
         // then
         assert test.size() == 0 : "list size after clear different than zero";
     }
+    
+    public static void shouldGiveElementFromPosition() {
+        // given
+        List test = new ArrayList();
+        Object one = new Object();
+        Object two = new Object();
+        Object three = new Object();
+        test.addAll(Arrays.asList(new Object[] {one, two, three}));
+    
+        // when
+        Object second = test.get(1);
+    
+        // then
+        assert second.equals(two) : "second element got from list different than two";
+    }
+
+    public static void shouldThrowIOBExceptionWhenListEmpty() {
+        // given
+        List test = new ArrayList();
+        boolean thrown = false;
+
+        // when
+        try {
+            Object myObj = test.get(0);
+        } catch (IndexOutOfBoundsException e) {
+            thrown = true;
+        }
+
+        // then
+        assert thrown : "IndexOutOfBoundsException not thrown after get from empty list";
+    }
+
+    public static void shouldThrowIOBExceptionWhenIndexNegative() {
+        // given
+        List test = new ArrayList();
+        test.add(new Object());
+        boolean thrown = false;
+
+        // when
+        try {
+            Object myObj = test.get(-5);
+        } catch (IndexOutOfBoundsException e) {
+            thrown = true;
+        }
+
+        // then
+        assert thrown : "IndexOutOfBoundsException not thrown after get from empty list";
+    }
 
     public static void main(String[] args) {
         // size
@@ -448,5 +496,10 @@ public class TestArrayList {
         // clear
         shouldYieldZeroSizeAfterClear();
         shouldYieldZeroSizeAfterClearOfEmptyList();
+        
+        // get
+        shouldGiveElementFromPosition();
+        shouldThrowIOBExceptionWhenListEmpty();
+        shouldThrowIOBExceptionWhenIndexNegative();
     }
 }
