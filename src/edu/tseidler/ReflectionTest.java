@@ -13,9 +13,7 @@ public class ReflectionTest {
                 .filter(m -> m.getName().startsWith("should"))
                 .filter(m -> Modifier.isPublic(m.getModifiers()))
                 .filter(m -> Modifier.isStatic(m.getModifiers()))
-                .forEach(m -> {
-                    invoke(m);
-                });
+                .forEach(m -> invoke(m));
     }
 
     private static void invoke(Method m) {
