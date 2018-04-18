@@ -1,0 +1,3 @@
+to count number of test cases find:
+should(?=\w)
+("should" followed by alphanumeric character)
