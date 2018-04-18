@@ -17,7 +17,7 @@ public class SoftAssert {
             try {
                 assert assertion.assertion : assertion.message;
             } catch (AssertionError ae) {
-                msg.append("\n" + assertion.message + ": (subtest: " + (i+1) + ")");
+                msg.append("\n" + assertion.message + " (subtest: " + (i+1) + ")");
             }
         }
         if (!msg.toString().isEmpty()) throw new AssertionError(msg.toString());

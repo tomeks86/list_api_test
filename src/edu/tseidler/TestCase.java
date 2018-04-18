@@ -13,7 +13,8 @@ public class TestCase {
             ReflectionTest.invoke(method);
         } catch (AssertionError | InvocationTargetException | IllegalAccessException e) {
             failed++;
-            messages.append("test number: " + (run + 1) + " failed (" + method.getName() + ")\n");
+            messages.append("test number: " + (run + 1) + " failed (" + method.getName() + ")\nreason: ");
+            messages.append(e.getCause() + "\n");
         } finally {
             run++;
         }
